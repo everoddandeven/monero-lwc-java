@@ -1,5 +1,0 @@
-package monero.lwc.object.request;
-
-public abstract class LWSResponseParameters {
-
-}
