@@ -6,6 +6,16 @@ It can be used to interact with REST methods provided by a [`Monero Light Wallet
 To support this library development, please consider donating.
 
 ### Bitcoin
-[![bitcoin-address-donation-qr-code`](https://github.com/everoddandeven/monero-lwc-java/blob/master/bitcoin-address-donation-qrcode.png)]
+![bitcoin-address-donation-qr-code`](https://github.com/everoddandeven/monero-lwc-java/blob/master/bitcoin-address-donation-qrcode.png)
 
-[`bc1qrsq9svfle93e9yr9dgcgsn7mt679perda2nd4w`](bitcoin:bc1qrsq9svfle93e9yr9dgcgsn7mt679perda2nd4w)
+[`bc1qrsq9svfle93e9yr9dgcgsn7mt679perda2nd4w`]()
+
+### Monero
+#### Address
+![monero-address-donation-qr-code`](https://github.com/everoddandeven/monero-lwc-java/blob/master/monero-address-donation-qrcode.png)
+
+[`48e5L3c9Mqb8vLBikf1KzvbZcBXSgh8akD3jqsrLLawPiTfgBkU9KbeiFxRe4iymsMcDeGFoPjT7wHZBwiN9ejxo2AxfJtg`](https://github.com/everoddandeven/monero-lwc-java/blob/master/monero-view-key-donation-qrcode.png)
+
+#### View key
+
+[`7637384e405cf3ca3f948e521b06921392c493e6089bd3d353777f15d1e4ed00`]()
