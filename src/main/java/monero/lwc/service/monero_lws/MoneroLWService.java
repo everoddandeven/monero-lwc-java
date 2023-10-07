@@ -1,70 +1,85 @@
 package monero.lwc.service.monero_lws;
 
+import monero.lwc.client.monero_lws.MoneroLWSClient;
 import monero.lwc.schema.monero_lws.admin.request.*;
-import monero.lwc.schema.monero_lws.admin.response.MoneroLWSListAccountsResponseSchema;
-import monero.lwc.schema.monero_lws.admin.response.MoneroLWSListRequestsResponseSchema;
-import monero.lwc.schema.monero_lws.admin.response.MoneroLWSWebhookAddResponseSchema;
+import monero.lwc.schema.monero_lws.admin.response.MoneroLWSListAccountsResponse;
+import monero.lwc.schema.monero_lws.admin.response.MoneroLWSListRequestsResponse;
+import monero.lwc.schema.monero_lws.admin.response.MoneroLWSWebhookAddResponse;
 import monero.lwc.schema.request.*;
 import monero.lwc.schema.response.*;
 import monero.lwc.service.BaseLWService;
 import monero.lwc.source.monero_lws.MoneroLWSource;
 
-public class MoneroLWService extends BaseLWService<MoneroLWSource> {
+public class MoneroLWService extends BaseLWService<MoneroLWSource, MoneroLWSClient> {
 
+    //<editor-fold desc="Base Methods">
     @Override
-    public GetAddressInfoResponseSchema GetAddressInfo(GetAddressInfoRequestSchema requestSchema) {
+    protected GetAddressInfoResponse getAddressInfo(GetAddressInfoRequest requestSchema) {
         return null;
     }
 
     @Override
-    public GetAddressTxsResponseSchema GetAddressTxs(GetAddressTxsRequestSchema requestSchema) {
+    protected GetAddressTxsResponse getAddressTxs(GetAddressTxsRequest requestSchema) {
         return null;
     }
 
     @Override
-    public GetRandomOutsResponseSchema GetRandomOuts(GetRandomOutsRequestSchema requestSchema) {
+    protected GetRandomOutsResponse getRandomOuts(GetRandomOutsRequest requestSchema) {
         return null;
     }
 
     @Override
-    public GetUnspentOutsResponseSchema GetUnspentOuts(GetUnspentOutsRequestSchema requestSchema) {
+    protected GetUnspentOutsResponse getUnspentOuts(GetUnspentOutsRequest requestSchema) {
         return null;
     }
 
     @Override
-    public ImportRequestResponseSchema ImportRequest(ImportRequestRequestSchema requestSchema) {
+    protected ImportRequestResponse importRequest(ImportRequestRequest requestSchema) {
         return null;
     }
 
     @Override
-    public LoginResponseSchema Login(LoginRequestSchema requestSchema) {
+    protected LoginResponse login(LoginRequest requestSchema) {
         return null;
     }
 
     @Override
-    public SubmitRawTxResponseSchema SubmitRawTx(SubmitRawTxRequestSchema requestSchema) {
+    protected SubmitRawTxResponse submitRawTx(SubmitRawTxRequest requestSchema) {
         return null;
     }
+
+    //</editor-fold>
 
     //<editor-fold desc="Admin Methods">
 
-    public void acceptRequests(MoneroLWSAcceptRequestsRequestSchema requestSchema) { };
+    protected void acceptRequests(MoneroLWSAcceptRequestsRequest requestSchema) { };
 
-    public void addAccount(MoneroLWSAddAccountRequestSchema requestSchema) {};
+    public void acceptRequests(String type, String[] addresses)
+    {
+        this.client.<LWSResponse, MoneroLWSAcceptRequestsRequest>submitRequest(new MoneroLWSAcceptRequestsRequest(type, addresses));
+    }
 
-    public MoneroLWSListAccountsResponseSchema listAccounts(MoneroLWSListAccountsRequestSchema requestSchema) { return null; };
+    protected void addAccount(MoneroLWSAddAccountRequest requestSchema) {};
 
-    public MoneroLWSListRequestsResponseSchema listRequests(MoneroLWSListRequestsRequestSchema requestSchema) { return null; }
+    public void addAccount(String address, String key)
+    {
 
-    public void modifyAccountStatus(MoneroLWSModifyAccountStatusRequestSchema requestSchema) {};
+    }
 
-    public void rejectRequests(MoneroLWSRejectRequestsRequestSchema requestSchema) {};
+    protected MoneroLWSListAccountsResponse listAccounts(MoneroLWSListAccountsRequest requestSchema) { return null; };
 
-    public void rescan(MoneroLWSRescanRequestSchema requestSchema) {};
+    protected MoneroLWSListRequestsResponse listRequests(MoneroLWSListRequestsRequest requestSchema) { return null; }
 
-    public void validate(MoneroLWSValidateRequestSchema requestSchema) {};
+    protected void modifyAccountStatus(MoneroLWSModifyAccountStatusRequest requestSchema) {};
 
-    public MoneroLWSWebhookAddResponseSchema webhookAdd(MoneroLWSWebhookAddRequestSchema requestSchema) { return null; };
+    protected void rejectRequests(MoneroLWSRejectRequestsRequest requestSchema) {};
+
+    protected void rescan(MoneroLWSRescanRequest requestSchema) {};
+
+    protected void validate(MoneroLWSValidateRequest requestSchema) {};
+
+    protected MoneroLWSWebhookAddResponse webhookAdd(MoneroLWSWebhookAddRequest requestSchema) { return null; };
 
     //</editor-fold>
+
 }

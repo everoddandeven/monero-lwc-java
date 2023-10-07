@@ -1,11 +1,11 @@
 package monero.lwc.client;
 
+import monero.lwc.schema.request.LWSRequest;
+import monero.lwc.schema.response.LWSResponse;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
 
 public abstract class BaseLWClient
 {
@@ -15,8 +15,9 @@ public abstract class BaseLWClient
         this.url = new URL(url);
     }
 
-    public HttpURLConnection getConnection() throws IOException {
+    protected HttpURLConnection getConnection() throws IOException {
         return (HttpURLConnection) this.url.openConnection();
     }
 
+    public abstract <ResponseType extends LWSResponse, RequestType extends LWSRequest> ResponseType submitRequest(RequestType requestSchema);
 }

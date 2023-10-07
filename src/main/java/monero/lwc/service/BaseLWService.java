@@ -1,24 +1,28 @@
 package monero.lwc.service;
 
+import monero.lwc.client.BaseLWClient;
 import monero.lwc.schema.request.*;
 import monero.lwc.schema.response.*;
 import monero.lwc.source.BaseLWSource;
 
-public abstract class BaseLWService<SourceType extends BaseLWSource> {
+public abstract class BaseLWService<SourceType extends BaseLWSource, ClientType extends BaseLWClient> {
 
     protected SourceType source;
 
-    public SourceType getSource()
+    protected ClientType client;
+
+    protected SourceType getSource()
     {
         return this.source;
     }
 
-    public abstract GetAddressInfoResponseSchema GetAddressInfo(GetAddressInfoRequestSchema requestSchema);
-    public abstract GetAddressTxsResponseSchema GetAddressTxs(GetAddressTxsRequestSchema requestSchema);
-    public abstract GetRandomOutsResponseSchema GetRandomOuts(GetRandomOutsRequestSchema requestSchema);
-    public abstract GetUnspentOutsResponseSchema GetUnspentOuts(GetUnspentOutsRequestSchema requestSchema);
-    public abstract ImportRequestResponseSchema ImportRequest(ImportRequestRequestSchema requestSchema);
-    public abstract LoginResponseSchema Login(LoginRequestSchema requestSchema);
-    public abstract SubmitRawTxResponseSchema SubmitRawTx(SubmitRawTxRequestSchema requestSchema);
+    protected abstract GetAddressInfoResponse getAddressInfo(GetAddressInfoRequest requestSchema);
+
+    protected abstract GetAddressTxsResponse getAddressTxs(GetAddressTxsRequest requestSchema);
+    protected abstract GetRandomOutsResponse getRandomOuts(GetRandomOutsRequest requestSchema);
+    protected abstract GetUnspentOutsResponse getUnspentOuts(GetUnspentOutsRequest requestSchema);
+    protected abstract ImportRequestResponse importRequest(ImportRequestRequest requestSchema);
+    protected abstract LoginResponse login(LoginRequest requestSchema);
+    protected abstract SubmitRawTxResponse submitRawTx(SubmitRawTxRequest requestSchema);
 
 }

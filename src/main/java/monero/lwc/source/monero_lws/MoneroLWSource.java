@@ -8,4 +8,8 @@ public class MoneroLWSource extends BaseLWSource {
     {
         super(uri);
     }
+    public MoneroLWSource(String hostname, Integer port)
+    {
+        super(hostname + ':' + port.toString());
+    }
 }
