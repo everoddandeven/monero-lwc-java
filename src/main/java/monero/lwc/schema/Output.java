@@ -13,6 +13,36 @@ public class Output extends Schema {
     public String publicKey;
     public String txPubKey;
     public String[] spendKeyImages;
-    public Timestamp timestamp;
+    public Long timestamp;
     public Long height;
+
+    public Output(
+            Long txId,
+            String amount,
+            Integer index,
+            String globalIndex,
+            String rct,
+            String txHash,
+            String txPrefixHash,
+            String publicKey,
+            String txPubKey,
+            String[] spendKeyImages,
+            Long timestamp,
+            Long height
+    )
+    {
+        this.txId = txId;
+        this.amount = amount;
+        this.index = index;
+        this.globalIndex = globalIndex;
+        this.rct = rct;
+        this.txHash = txHash;
+        this.txPrefixHash = txPrefixHash;
+        this.publicKey = publicKey;
+        this.txPubKey = txPubKey;
+        this.spendKeyImages = spendKeyImages;
+        this.timestamp = timestamp;
+        this.height = height;
+    }
+
 }

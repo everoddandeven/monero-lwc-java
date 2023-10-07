@@ -7,4 +7,17 @@ public class GetUnspentOutsResponse extends LWSResponse {
     public String feeMask;
     public String amount;
     public Output[] outputs;
+
+    public GetUnspentOutsResponse(
+            String perByteFee,
+            String feeMask,
+            String amount,
+            Output[] outputs
+    )
+    {
+        this.perByteFee = perByteFee;
+        this.feeMask = feeMask;
+        this.amount = amount;
+        this.outputs = outputs;
+    }
 }

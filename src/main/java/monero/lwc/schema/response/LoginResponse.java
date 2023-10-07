@@ -5,4 +5,10 @@ public class LoginResponse extends LWSResponse {
     public Boolean generatedLocally;
     public Long startHeight;
 
+    public LoginResponse(Boolean newAddress, Boolean generatedLocally, Long startHeight)
+    {
+        this.newAddress = newAddress;
+        this.generatedLocally = generatedLocally;
+        this.startHeight = startHeight;
+    }
 }

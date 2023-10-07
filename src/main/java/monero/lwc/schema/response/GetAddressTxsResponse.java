@@ -10,4 +10,21 @@ public class GetAddressTxsResponse extends LWSResponse {
     public Long blockchainHeight;
     public Transaction[] transactions;
 
+    public GetAddressTxsResponse(
+            String totalReceived,
+            Long scannedHeight,
+            Long scannedBlockHeight,
+            Long startHeight,
+            Long blockchainHeight,
+            Transaction[] transactions
+    )
+    {
+        this.totalReceived = totalReceived;
+        this.scannedHeight = scannedHeight;
+        this.scannedBlockHeight = scannedBlockHeight;
+        this.startHeight = startHeight;
+        this.blockchainHeight = blockchainHeight;
+        this.transactions = transactions;
+    }
+
 }

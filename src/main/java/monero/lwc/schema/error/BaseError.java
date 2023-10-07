@@ -1,4 +1,6 @@
 package monero.lwc.schema.error;
 
-public abstract class BaseError {
+import monero.lwc.schema.Schema;
+
+public abstract class BaseError extends Schema {
 }

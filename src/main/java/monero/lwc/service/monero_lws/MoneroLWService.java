@@ -56,27 +56,57 @@ public class MoneroLWService extends BaseLWService<MoneroLWSource, MoneroLWSClie
 
     public void acceptRequests(String type, String[] addresses)
     {
-        this.client.<LWSResponse, MoneroLWSAcceptRequestsRequest>submitRequest(new MoneroLWSAcceptRequestsRequest(type, addresses));
+        this.acceptRequests(new MoneroLWSAcceptRequestsRequest(type, addresses));
     }
 
     protected void addAccount(MoneroLWSAddAccountRequest requestSchema) {};
 
     public void addAccount(String address, String key)
     {
-
+        this.addAccount(new MoneroLWSAddAccountRequest(address, key));
     }
 
     protected MoneroLWSListAccountsResponse listAccounts(MoneroLWSListAccountsRequest requestSchema) { return null; };
 
+    public MoneroLWSListAccountsResponse listAccounts()
+    {
+        return this.listAccounts(new MoneroLWSListAccountsRequest());
+    }
+
     protected MoneroLWSListRequestsResponse listRequests(MoneroLWSListRequestsRequest requestSchema) { return null; }
+
+    public MoneroLWSListRequestsResponse listRequests()
+    {
+        return this.listRequests(new MoneroLWSListRequestsRequest());
+    }
 
     protected void modifyAccountStatus(MoneroLWSModifyAccountStatusRequest requestSchema) {};
 
+    public void modifyAccountStatus(String status, String[] addresses)
+    {
+        this.modifyAccountStatus(new MoneroLWSModifyAccountStatusRequest(status, addresses));
+    }
+
     protected void rejectRequests(MoneroLWSRejectRequestsRequest requestSchema) {};
+
+    public void rejectRequests(String type, String[] addresses)
+    {
+        this.rejectRequests(new MoneroLWSRejectRequestsRequest(type, addresses));
+    }
 
     protected void rescan(MoneroLWSRescanRequest requestSchema) {};
 
+    public void rescan(Long height, String[] addresses)
+    {
+        this.rescan(new MoneroLWSRescanRequest(height, addresses));
+    }
+
     protected void validate(MoneroLWSValidateRequest requestSchema) {};
+
+    public void validate(String viewPublicHex, String spendPublicHex, String viewKeyHex)
+    {
+        this.validate(new MoneroLWSValidateRequest(viewPublicHex, spendPublicHex, viewKeyHex));
+    }
 
     protected MoneroLWSWebhookAddResponse webhookAdd(MoneroLWSWebhookAddRequest requestSchema) { return null; };
 
