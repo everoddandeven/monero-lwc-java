@@ -1,5 +1,7 @@
 package monero.lwc.schema;
 
-public abstract class ObjectSchema {
+import org.json.JSONObject;
+
+public abstract class ObjectSchema extends JSONObject {
 
 }

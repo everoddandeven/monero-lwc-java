@@ -1,5 +1,7 @@
 package monero.lwc.schema.request;
 
-public abstract class LWSRequestSchema {
+import monero.lwc.schema.ObjectSchema;
+
+public abstract class LWSRequestSchema extends ObjectSchema {
 
 }

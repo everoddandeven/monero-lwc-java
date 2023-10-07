@@ -1,4 +1,6 @@
 package monero.lwc.schema.response;
 
-public abstract class LWSResponseSchema {
+import monero.lwc.schema.ObjectSchema;
+
+public abstract class LWSResponseSchema extends ObjectSchema {
 }
