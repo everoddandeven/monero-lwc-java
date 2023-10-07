@@ -12,10 +12,11 @@ To support this library development, please consider donating.
 
 ### Monero
 #### Address
-![monero-address-donation-qr-code`](https://github.com/everoddandeven/monero-lwc-java/blob/master/monero-address-donation-qrcode.png)
+![`monero-address-donation-qr-code`](https://github.com/everoddandeven/monero-lwc-java/blob/master/monero-address-donation-qrcode.png)
 
-[`48e5L3c9Mqb8vLBikf1KzvbZcBXSgh8akD3jqsrLLawPiTfgBkU9KbeiFxRe4iymsMcDeGFoPjT7wHZBwiN9ejxo2AxfJtg`](https://github.com/everoddandeven/monero-lwc-java/blob/master/monero-view-key-donation-qrcode.png)
+[`48e5L3c9Mqb8vLBikf1KzvbZcBXSgh8akD3jqsrLLawPiTfgBkU9KbeiFxRe4iymsMcDeGFoPjT7wHZBwiN9ejxo2AxfJtg`]()
 
 #### View key
+![`monero-view-key-donation-qr-code`](https://github.com/everoddandeven/monero-lwc-java/blob/master/monero-view-key-donation-qrcode.png)
 
 [`7637384e405cf3ca3f948e521b06921392c493e6089bd3d353777f15d1e4ed00`]()
