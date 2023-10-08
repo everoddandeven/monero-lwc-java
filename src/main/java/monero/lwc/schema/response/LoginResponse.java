@@ -1,6 +1,8 @@
 package monero.lwc.schema.response;
 
-public class LoginResponse extends LWSResponse {
+import org.json.JSONObject;
+
+public class LoginResponse extends BaseLWSResponse {
     public Boolean newAddress;
     public Boolean generatedLocally;
     public Long startHeight;
@@ -10,5 +12,10 @@ public class LoginResponse extends LWSResponse {
         this.newAddress = newAddress;
         this.generatedLocally = generatedLocally;
         this.startHeight = startHeight;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        return null;
     }
 }

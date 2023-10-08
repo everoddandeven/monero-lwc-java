@@ -1,13 +1,9 @@
 package monero.lwc.schema.monero_lws.admin.request;
 
-import monero.lwc.schema.request.LWSRequest;
-import monero.lwc.service.monero_lws.auth.MoneroLWSAuthService;
+import jdk.jshell.spi.ExecutionControl;
+import monero.lwc.schema.request.BaseLWSRequest;
+import org.json.JSONObject;
 
-public abstract class MoneroLWSAdminRequest extends LWSRequest {
-
-    public String getAuth()
-    {
-        return MoneroLWSAuthService.getInstanceHash();
-    }
+public abstract class MoneroLWSAdminRequest extends BaseLWSRequest {
 
 }

@@ -1,5 +1,7 @@
 package monero.lwc.schema;
 
+import org.json.JSONObject;
+
 public class RandomOutput extends Schema {
     public String globalIndex;
     public String publicKey;
@@ -12,4 +14,8 @@ public class RandomOutput extends Schema {
         this.rct = rct;
     }
 
+    @Override
+    public JSONObject toJSON() {
+        return null;
+    }
 }

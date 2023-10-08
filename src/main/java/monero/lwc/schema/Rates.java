@@ -1,5 +1,7 @@
 package monero.lwc.schema;
 
+import org.json.JSONObject;
+
 public class Rates extends Schema {
     public Float AUD;
     public Float BRL;
@@ -22,4 +24,9 @@ public class Rates extends Schema {
     public Float USD;
     public Float RUB;
     public Float ZAR;
+
+    @Override
+    public JSONObject toJSON() {
+        return null;
+    }
 }

@@ -1,11 +1,11 @@
 package monero.lwc.service;
 
-import monero.lwc.client.BaseLWClient;
+import monero.lwc.client.BaseRestClient;
 import monero.lwc.schema.request.*;
 import monero.lwc.schema.response.*;
 import monero.lwc.source.BaseLWSource;
 
-public abstract class BaseLWService<SourceType extends BaseLWSource, ClientType extends BaseLWClient> {
+public abstract class BaseLWService<SourceType extends BaseLWSource, ClientType extends BaseRestClient> {
 
     protected SourceType source;
 

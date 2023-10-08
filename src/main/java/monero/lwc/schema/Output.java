@@ -1,5 +1,7 @@
 package monero.lwc.schema;
 
+import org.json.JSONObject;
+
 import java.sql.Timestamp;
 
 public class Output extends Schema {
@@ -45,4 +47,8 @@ public class Output extends Schema {
         this.height = height;
     }
 
+    @Override
+    public JSONObject toJSON() {
+        return null;
+    }
 }

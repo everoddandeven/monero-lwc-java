@@ -1,6 +1,6 @@
 package monero.lwc.service.monero_lws;
 
-import monero.lwc.client.monero_lws.MoneroLWSClient;
+import monero.lwc.client.monero_lws.MoneroLWRestClient;
 import monero.lwc.schema.monero_lws.admin.request.*;
 import monero.lwc.schema.monero_lws.admin.response.MoneroLWSListAccountsResponse;
 import monero.lwc.schema.monero_lws.admin.response.MoneroLWSListRequestsResponse;
@@ -10,7 +10,25 @@ import monero.lwc.schema.response.*;
 import monero.lwc.service.BaseLWService;
 import monero.lwc.source.monero_lws.MoneroLWSource;
 
-public class MoneroLWService extends BaseLWService<MoneroLWSource, MoneroLWSClient> {
+public class MoneroLWService extends BaseLWService<MoneroLWSource, MoneroLWRestClient> {
+
+    protected MoneroLWService(MoneroLWSource source, MoneroLWRestClient client) {
+        this.source = source;
+        this.client = client;
+    }
+
+    public MoneroLWService(String serverUrl, String auth)
+    {
+        this.source = new MoneroLWSource(serverUrl);
+        this.client = new MoneroLWRestClient(serverUrl, auth);
+    }
+
+    public MoneroLWService(String serverUrl)
+    {
+        this.source = new MoneroLWSource(serverUrl);
+        this.client = new MoneroLWRestClient(serverUrl, "");
+    }
+
 
     //<editor-fold desc="Base Methods">
     @Override

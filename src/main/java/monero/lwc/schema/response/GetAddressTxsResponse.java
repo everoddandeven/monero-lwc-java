@@ -1,8 +1,9 @@
 package monero.lwc.schema.response;
 
 import monero.lwc.schema.Transaction;
+import org.json.JSONObject;
 
-public class GetAddressTxsResponse extends LWSResponse {
+public class GetAddressTxsResponse extends BaseLWSResponse {
     public String totalReceived;
     public Long scannedHeight;
     public Long scannedBlockHeight;
@@ -27,4 +28,8 @@ public class GetAddressTxsResponse extends LWSResponse {
         this.transactions = transactions;
     }
 
+    @Override
+    public JSONObject toJSON() {
+        return null;
+    }
 }

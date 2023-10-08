@@ -1,5 +1,7 @@
 package monero.lwc.schema;
 
+import org.json.JSONObject;
+
 public class Spend extends Schema {
     public String amount;
     public String keyImage;
@@ -20,5 +22,10 @@ public class Spend extends Schema {
         this.txPubKey = txPubKey;
         this.outIndex = outIndex;
         this.mixin = mixin;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        return null;
     }
 }

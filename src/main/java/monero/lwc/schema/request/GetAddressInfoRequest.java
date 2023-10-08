@@ -1,6 +1,8 @@
 package monero.lwc.schema.request;
 
-public class GetAddressInfoRequest extends LWSRequest {
+import org.json.JSONObject;
+
+public class GetAddressInfoRequest extends BaseLWSRequest {
 
     public String address;
     public String viewKey;
@@ -11,4 +13,12 @@ public class GetAddressInfoRequest extends LWSRequest {
         this.viewKey = viewKey;
     }
 
+    @Override
+    public JSONObject toJSON() {
+        JSONObject object = new JSONObject();
+
+        object.put("address", this.address);
+        object.put("view_key", this.viewKey);
+        return object;
+    }
 }

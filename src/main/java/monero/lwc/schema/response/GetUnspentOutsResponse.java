@@ -1,8 +1,9 @@
 package monero.lwc.schema.response;
 
 import monero.lwc.schema.Output;
+import org.json.JSONObject;
 
-public class GetUnspentOutsResponse extends LWSResponse {
+public class GetUnspentOutsResponse extends BaseLWSResponse {
     public String perByteFee;
     public String feeMask;
     public String amount;
@@ -19,5 +20,10 @@ public class GetUnspentOutsResponse extends LWSResponse {
         this.feeMask = feeMask;
         this.amount = amount;
         this.outputs = outputs;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        return null;
     }
 }

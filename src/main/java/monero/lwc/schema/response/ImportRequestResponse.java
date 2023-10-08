@@ -1,6 +1,8 @@
 package monero.lwc.schema.response;
 
-public class ImportRequestResponse extends LWSResponse {
+import org.json.JSONObject;
+
+public class ImportRequestResponse extends BaseLWSResponse {
     public String paymentAddress;
     public String paymentId;
     public String importFee;
@@ -23,5 +25,10 @@ public class ImportRequestResponse extends LWSResponse {
         this.newRequest = newRequest;
         this.newRequestFulfilled = newRequestFulfilled;
         this.status = status;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        return null;
     }
 }
