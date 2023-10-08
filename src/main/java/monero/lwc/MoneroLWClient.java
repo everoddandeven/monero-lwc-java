@@ -67,7 +67,7 @@ public class MoneroLWClient {
     }
 
 
-    public JSONObject post(String apiMethod, JSONObject requestBody) throws IOException {
+    private JSONObject post(String apiMethod, JSONObject requestBody) throws IOException {
         HttpURLConnection connection = this.openConnection(apiMethod);
 
         try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
@@ -294,6 +294,26 @@ public class MoneroLWClient {
     {
         JSONObject params = this.processJSONObject(parameters.toJSON());
         return WebhookAddResponse.fromJSON(this.post(MoneroLWMethod.WebhookAdd, params));
+    }
+
+    public WebhookAddResponse webhookAdd(String type, String address, String url, String token, String paymentId) throws IOException {
+        return this.webhookAdd(new WebhookAddParameters(type,address,url,token,paymentId));
+    }
+
+    private void webhookDelete(WebhookDeleteParameters parameters) throws IOException {
+        this.post(MoneroLWMethod.WebhookDelete, parameters.toJSON());
+    }
+
+    public void webhookDelete(String[] addresses) throws IOException {
+        this.webhookDelete(new WebhookDeleteParameters(addresses));
+    }
+
+    private void webhookDeleteUUID(WebhookDeleteUUIDParameters parameters) throws IOException {
+        this.post(MoneroLWMethod.WebhookDelete, parameters.toJSON());
+    }
+
+    public void webhookDeleteUUID(String[] eventIds) throws IOException {
+        this.webhookDeleteUUID(new WebhookDeleteUUIDParameters(eventIds));
     }
 
     //</editor-fold>
