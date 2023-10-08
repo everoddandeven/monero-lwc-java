@@ -1,5 +1,7 @@
 package monero.lwc.schema.admin.request;
 
+import org.json.JSONObject;
+
 public class WebhookAddParameters extends AdminParameters {
     public String type;
     public String address;
@@ -20,5 +22,17 @@ public class WebhookAddParameters extends AdminParameters {
         this.url = url;
         this.token = token;
         this.paymentId = paymentId;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject object = new JSONObject();
+        object.put("type", this.type);
+        object.put("address", this.address);
+        object.put("url", this.url);
+        object.put("token", this.token);
+        object.put("payment_id", this.paymentId);
+
+        return object;
     }
 }

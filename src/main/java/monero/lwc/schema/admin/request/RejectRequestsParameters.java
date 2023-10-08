@@ -1,5 +1,7 @@
 package monero.lwc.schema.admin.request;
 
+import org.json.JSONObject;
+
 public class RejectRequestsParameters extends AdminParameters {
     public String type;
     public String[] addresses;
@@ -8,5 +10,13 @@ public class RejectRequestsParameters extends AdminParameters {
     {
         this.type = type;
         this.addresses = addresses;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject object = new JSONObject();
+        object.put("type", this.type);
+        object.put("addresses", this.addresses);
+        return object;
     }
 }
