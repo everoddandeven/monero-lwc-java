@@ -8,8 +8,10 @@ import java.security.cert.X509Certificate;
 public class Test {
     public static void main(String[] args) {
         try {
-            MoneroLWClient client = new MoneroLWClient("https://51.20.136.106:8443");
-            client.login("", "");
+            MoneroLWClient client = new MoneroLWClient("http://51.20.136.106:8443");
+            client.login(
+                    "48LpcQpkHFnM9cE6889P4edZXTgsZrbEZSHdvvdsGGPC8UKwWXsgJmNBMikzX9LpnL8DuuZkjubWtcvmDmYT3MNoQwJzSKe",
+                    "778b80fb2b61e106de84363a6188fbf938e4346b5f4b55a103227e4f9d277b0d");
             System.out.print("OK");
         } catch (Exception e) {
             e.printStackTrace();
