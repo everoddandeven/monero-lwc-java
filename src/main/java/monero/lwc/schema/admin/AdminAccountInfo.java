@@ -2,12 +2,12 @@ package monero.lwc.schema.admin;
 
 import org.json.JSONObject;
 
-public class AccountInfo extends AdminSchema {
+public class AdminAccountInfo extends AdminSchema {
     public String address;
     public Long scanHeight;
     public Long accessTime;
 
-    public AccountInfo(String address, Long scanHeight, Long accessTime)
+    public AdminAccountInfo(String address, Long scanHeight, Long accessTime)
     {
         this.address = address;
         this.scanHeight = scanHeight;

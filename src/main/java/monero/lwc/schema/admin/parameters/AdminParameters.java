@@ -1,4 +1,4 @@
-package monero.lwc.schema.admin.request;
+package monero.lwc.schema.admin.parameters;
 
 import monero.lwc.schema.parameters.BaseLWSParameters;
 

@@ -1,17 +1,22 @@
 package monero.lwc.schema.admin.response;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class WebhookListResponse extends AdminResponse {
-    public JSONObject[] webhooks;
+    public JSONArray webhooks;
 
-    public WebhookListResponse(JSONObject[] webhooks)
+    public WebhookListResponse(JSONArray webhooks)
     {
         this.webhooks = webhooks;
     }
 
     @Override
     public JSONObject toJSON() {
-        return null;
+        JSONObject object = new JSONObject();
+
+        object.put("webhooks", this.webhooks);
+
+        return object;
     }
 }

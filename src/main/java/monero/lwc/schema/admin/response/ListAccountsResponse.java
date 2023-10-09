@@ -1,28 +1,28 @@
 package monero.lwc.schema.admin.response;
 
-import monero.lwc.schema.admin.AccountInfo;
+import monero.lwc.schema.admin.AdminAccountInfo;
 import org.json.JSONObject;
 
 public class ListAccountsResponse extends AdminResponse {
-    public AccountInfo[] active;
-    public AccountInfo[] inactive;
-    public AccountInfo[] hidden;
+    public AdminAccountInfo[] active;
+    public AdminAccountInfo[] inactive;
+    public AdminAccountInfo[] hidden;
 
-    public ListAccountsResponse(AccountInfo[] active, AccountInfo[] inactive, AccountInfo[] hidden)
+    public ListAccountsResponse(AdminAccountInfo[] active, AdminAccountInfo[] inactive, AdminAccountInfo[] hidden)
     {
         this.active = active;
         this.inactive = inactive;
         this.hidden = hidden;
     }
 
-    public ListAccountsResponse(AccountInfo[] active, AccountInfo[] inactive)
+    public ListAccountsResponse(AdminAccountInfo[] active, AdminAccountInfo[] inactive)
     {
-        this(active, inactive, new AccountInfo[]{});
+        this(active, inactive, new AdminAccountInfo[]{});
     }
 
-    public ListAccountsResponse(AccountInfo[] active)
+    public ListAccountsResponse(AdminAccountInfo[] active)
     {
-        this(active, new AccountInfo[]{}, new AccountInfo[]{});
+        this(active, new AdminAccountInfo[]{}, new AdminAccountInfo[]{});
     }
 
     @Override

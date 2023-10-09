@@ -1,9 +1,10 @@
 package monero.lwc;
 
-import monero.lwc.schema.admin.request.*;
+import monero.lwc.schema.admin.parameters.*;
 import monero.lwc.schema.admin.response.ListAccountsResponse;
 import monero.lwc.schema.admin.response.ListRequestsResponse;
 import monero.lwc.schema.admin.response.WebhookAddResponse;
+import monero.lwc.schema.admin.response.WebhookListResponse;
 import monero.lwc.schema.parameters.*;
 import monero.lwc.schema.parameters.GetRandomOutsParameters;
 import monero.lwc.schema.response.*;
@@ -16,22 +17,59 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class MoneroLWClient {
-
     private static HttpURLConnection staticConnection = null;
-
     private URL url;
     private URL serverUrl;
     private String serverUri;
-
-    private String adminPath = "/admin";
-
-    private String hash = "";
+    private String adminPath;
+    private String auth;
 
     public MoneroLWClient(String serverUri) throws MalformedURLException {
+        this(serverUri,"/admin","");
+    }
+
+    public MoneroLWClient(String serverUri, String adminPath) throws MalformedURLException {
+        this(serverUri,adminPath,"");
+    }
+
+    public MoneroLWClient(String serverUri, String adminPath, String auth) throws MalformedURLException {
         this.serverUri = serverUri;
         this.serverUrl = new URL(serverUri);
+        this.adminPath = adminPath;
+        this.auth = auth;
+    }
+
+    public String getServerUri()
+    {
+        return this.serverUri;
+    }
+
+    public void setServerUri(String serverUri) throws MalformedURLException {
+        this.serverUri = serverUri;
+        this.serverUrl = new URL(serverUri);
+    }
+
+    public void setAdminPath(String adminPath)
+    {
+        this.adminPath = adminPath;
+    }
+
+    public String getAdminPath()
+    {
+        return this.adminPath;
+    }
+
+    public void setAuth(String auth)
+    {
+        this.auth = auth;
+    }
+
+    public String getAuth()
+    {
+        return this.auth;
     }
 
     private URL getURL(String apiMethod) throws MalformedURLException {
@@ -66,12 +104,17 @@ public class MoneroLWClient {
         return this.openConnection(apiMethod,false);
     }
 
+    private JSONObject post(String apiMethod, JSONObject requestBody, Boolean staticConnection) throws IOException {
+        HttpURLConnection connection = this.openConnection(apiMethod, staticConnection);
 
-    private JSONObject post(String apiMethod, JSONObject requestBody) throws IOException {
-        HttpURLConnection connection = this.openConnection(apiMethod);
-
-        try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
-            outputStream.write(requestBody.toString().getBytes("UTF-8"));
+        try {
+            connection.setReadTimeout(60000);
+            DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+            outputStream.write(requestBody.toString().getBytes(StandardCharsets.UTF_8));
+        }
+        catch (Exception e)
+        {
+            System.out.print("Exception");
         }
 
         int responseCode = connection.getResponseCode();
@@ -93,6 +136,10 @@ public class MoneroLWClient {
             error.put("error", errorDesc);
             return error;
         }
+    }
+
+    private JSONObject post(String apiMethod, JSONObject requestBody) throws IOException {
+        return this.post(apiMethod,requestBody,false);
     }
 
     //<editor-fold desc="Base Methods">
@@ -156,7 +203,7 @@ public class MoneroLWClient {
 
     private Boolean isAuthenticated()
     {
-        return !this.hash.isEmpty();
+        return !this.auth.isEmpty();
     }
 
     public LoginResponse login(
@@ -199,7 +246,7 @@ public class MoneroLWClient {
     {
         JSONObject authObj = new JSONObject();
 
-        authObj.put("auth", this.hash);
+        authObj.put("auth", this.auth);
         authObj.put("parameters", object);
         return authObj;
     }
@@ -219,7 +266,7 @@ public class MoneroLWClient {
     private void acceptRequests(AcceptRequestsParameters parameters) throws IOException {
         JSONObject params = this.processJSONObject(parameters.toJSON());
         this.post(MoneroLWMethod.AcceptRequests, params);
-    };
+    }
 
     public void acceptRequests(String type, String[] addresses) throws IOException {
         this.acceptRequests(new AcceptRequestsParameters(type, addresses));
@@ -229,7 +276,7 @@ public class MoneroLWClient {
         JSONObject params = this.processJSONObject(parameters.toJSON());
 
         this.post(MoneroLWMethod.AddAccount, params);
-    };
+    }
 
     public void addAccount(String address, String key) throws IOException {
         this.addAccount(new AddAccountParameters(address, key));
@@ -238,7 +285,7 @@ public class MoneroLWClient {
     private ListAccountsResponse listAccounts(ListAccountsParameters parameters) throws IOException {
         JSONObject params = this.processJSONObject(parameters.toJSON());
         return ListAccountsResponse.fromJSON(this.post(MoneroLWMethod.ListAccounts, params));
-    };
+    }
 
     public ListAccountsResponse listAccounts() throws IOException {
         return this.listAccounts(new ListAccountsParameters());
@@ -256,7 +303,7 @@ public class MoneroLWClient {
     private void modifyAccountStatus(ModifyAccountStatusParameters parameters) throws IOException {
         JSONObject params = this.processJSONObject(parameters.toJSON());
         this.post(MoneroLWMethod.ModifyAccountStatus, params);
-    };
+    }
 
     public void modifyAccountStatus(String status, String[] addresses) throws IOException {
         this.modifyAccountStatus(new ModifyAccountStatusParameters(status, addresses));
@@ -265,7 +312,7 @@ public class MoneroLWClient {
     private void rejectRequests(RejectRequestsParameters parameters) throws IOException {
         JSONObject params = this.processJSONObject(parameters.toJSON());
         this.post(MoneroLWMethod.RejectRequests, params);
-    };
+    }
 
     public void rejectRequests(String type, String[] addresses) throws IOException {
         this.rejectRequests(new RejectRequestsParameters(type, addresses));
@@ -274,7 +321,7 @@ public class MoneroLWClient {
     private void rescan(RescanParameters parameters) throws IOException {
         JSONObject params = this.processJSONObject(parameters.toJSON());
         this.post(MoneroLWMethod.Rescan, params);
-    };
+    }
 
     public void rescan(Long height, String[] addresses) throws IOException {
         this.rescan(new RescanParameters(height, addresses));
@@ -283,7 +330,7 @@ public class MoneroLWClient {
     private void validate(ValidateParameters parameters) throws IOException {
         JSONObject params = this.processJSONObject(parameters.toJSON());
         this.post(MoneroLWMethod.Validate, params);
-    };
+    }
 
     public void validate(String viewPublicHex, String spendPublicHex, String viewKeyHex) throws IOException
     {
@@ -301,7 +348,8 @@ public class MoneroLWClient {
     }
 
     private void webhookDelete(WebhookDeleteParameters parameters) throws IOException {
-        this.post(MoneroLWMethod.WebhookDelete, parameters.toJSON());
+        JSONObject params = this.processJSONObject(parameters.toJSON());
+        this.post(MoneroLWMethod.WebhookDelete, params);
     }
 
     public void webhookDelete(String[] addresses) throws IOException {
@@ -309,11 +357,21 @@ public class MoneroLWClient {
     }
 
     private void webhookDeleteUUID(WebhookDeleteUUIDParameters parameters) throws IOException {
-        this.post(MoneroLWMethod.WebhookDelete, parameters.toJSON());
+        JSONObject params = this.processJSONObject(parameters.toJSON());
+        this.post(MoneroLWMethod.WebhookDelete, params);
     }
 
     public void webhookDeleteUUID(String[] eventIds) throws IOException {
         this.webhookDeleteUUID(new WebhookDeleteUUIDParameters(eventIds));
+    }
+
+    private WebhookListResponse webhookList(WebhookListParameters parameters) throws IOException {
+        JSONObject params = this.processJSONObject(parameters.toJSON());
+        return WebhookListResponse.fromJSON(this.post(MoneroLWMethod.WebhookList, params));
+    }
+
+    public WebhookListResponse webhookList() throws IOException {
+        return this.webhookList(new WebhookListParameters());
     }
 
     //</editor-fold>
